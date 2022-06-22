@@ -1,0 +1,50 @@
+{
+  "name": "test",
+  "type": "C51",
+  "mode": "Debug",
+  "toolchain": "SDCC",
+  "uploader": "stcgal",
+  "dependenceList": [
+    {
+      "groupName": "custom",
+      "depList": [
+        {
+          "name": "default",
+          "incList": [
+            "./build/Debug/src"
+          ],
+          "libList": [],
+          "sourceDirList": [],
+          "defineList": []
+        }
+      ]
+    }
+  ],
+  "compileConfig": {
+    "options": "null"
+  },
+  "srcDirs": [
+    "./src"
+  ],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": []
+  },
+  "excludeList": [],
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "uploadConfig": {
+    "bin": "",
+    "eepromImgPath": "null",
+    "extraOptions": "",
+    "options": ".eide/stc.flash.json"
+  },
+  "uploadConfigMap": {},
+  "miscInfo": {
+    "uid": "da739726defd050bce005708d5beb3e6"
+  },
+  "targets": {},
+  "version": "3.1"
+}
