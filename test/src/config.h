@@ -30,13 +30,13 @@
 
 #include "STC8xxxx.H"
 // #include "STC_it.h"
-// #include "UART.h"
+#include "UART.h"
 // #include "MAX31855.h"
 // #include "CANSPI.h"
 // #include "MCP2515.h"
 #include <stdio.h>
-#include <math.h>
-#include <string.h>
+// #include <math.h>
+// #include <string.h>
 //////////////////GPIO重命名//////////////////////////
 
 

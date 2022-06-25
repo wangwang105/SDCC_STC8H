@@ -15,6 +15,7 @@
 
 // #include <intrins.h>
 #include <compiler.h>
+
 // #include<8052.h>
 // #include<stc12.h>
 
@@ -58,149 +59,148 @@
 #define UART4_RxEnable(n) S4CON = (S4CON & ~0x10) | (n << 4) /* UART4接收使能 */
 
 /*  BYTE Registers  */
-__sfr __at  0x80 P0;
-__sfr __at  0x81 SP;
-__sfr __at  0x82 DPL;
-__sfr __at  0x83 DPH;
-__sfr __at  0x84 S4CON;
-__sfr __at  0x85 S4BUF;
-__sfr __at  0x87 PCON;
+__sfr __at ( 0x80) P0;
+__sfr __at ( 0x81) SP;
+__sfr __at ( 0x82) DPL;
+__sfr __at ( 0x83) DPH;
+__sfr __at ( 0x84) S4CON;
+__sfr __at ( 0x85) S4BUF;
+__sfr __at ( 0x87) PCON;
 
-__sfr __at  0x88 TCON;
-__sfr __at  0x89 TMOD;
-__sfr __at  0x8A TL0;
-__sfr __at  0x8B TL1;
-__sfr __at  0x8C TH0;
-__sfr __at  0x8D TH1;
-__sfr __at  0x8E AUXR;
-__sfr __at  0x8F WAKE_CLKO;
-__sfr __at  0x8F INT_CLKO;
+__sfr __at ( 0x88) TCON;
+__sfr __at ( 0x89) TMOD;
+__sfr __at ( 0x8A) TL0;
+__sfr __at ( 0x8B) TL1;
+__sfr __at ( 0x8C) TH0;
+__sfr __at ( 0x8D) TH1;
+__sfr __at ( 0x8E) AUXR;
+__sfr __at ( 0x8F) WAKE_CLKO;
+__sfr __at ( 0x8F) INT_CLKO;
 
-__sfr __at  0x90 P1;
-__sfr __at  0x91 P1M1; // P1M1.n,P1M0.n 	=00--->Standard,	01--->push-pull		实际上1T的都一样
-__sfr __at  0x92 P1M0; //					=10--->pure input,	11--->open drain
-__sfr __at  0x93 P0M1; // P0M1.n,P0M0.n 	=00--->Standard,	01--->push-pull
-__sfr __at  0x94 P0M0; //					=10--->pure input,	11--->open drain
-__sfr __at  0x95 P2M1; // P2M1.n,P2M0.n 	=00--->Standard,	01--->push-pull
-__sfr __at  0x96 P2M0; //					=10--->pure input,	11--->open drain
+__sfr __at ( 0x90) P1;
+__sfr __at ( 0x91) P1M1; // P1M1.n,P1M0.n 	=00--->Standard,	01--->push-pull		实际上1T的都一样
+__sfr __at ( 0x92) P1M0; //					=10--->pure input,	11--->open drain
+__sfr __at ( 0x93) P0M1; // P0M1.n,P0M0.n 	=00--->Standard,	01--->push-pull
+__sfr __at ( 0x94) P0M0; //					=10--->pure input,	11--->open drain
+__sfr __at ( 0x95) P2M1; // P2M1.n,P2M0.n 	=00--->Standard,	01--->push-pull
+__sfr __at ( 0x96) P2M0; //					=10--->pure input,	11--->open drain
 // __sfr __at(PCON2, 0x97);
 // sfr	AUXR2, 0x97);
 
-__sfr __at  0x98 SCON;
-__sfr __at  0x99 SBUF;
-__sfr __at  0x9A S2CON; //
-__sfr __at  0x9B S2BUF; //
+__sfr __at ( 0x98) SCON;
+__sfr __at ( 0x99) SBUF;
+__sfr __at ( 0x9A) S2CON; //
+__sfr __at ( 0x9B) S2BUF; //
 
-__sfr __at  0xA0 P2;
-__sfr __at  0xA1 BUS_SPEED;
-__sfr __at  0xA2 P_SW1;
+__sfr __at ( 0xA0) P2;
+__sfr __at ( 0xA1) BUS_SPEED;
+__sfr __at ( 0xA2) P_SW1;
 
-__sfr __at  0xA8 IE;
-__sfr __at  0xA9 SADDR;
-__sfr __at  0xAA WKTCL; //唤醒定时器低字节
-__sfr __at  0xAB WKTCH; //唤醒定时器高字节
-__sfr __at  0xAC S3CON;
-__sfr __at  0xAD S3BUF;
-__sfr __at  0xAE TA;
-__sfr __at  0xAF IE2;
+__sfr __at ( 0xA8) IE;
+__sfr __at ( 0xA9) SADDR;
+__sfr __at ( 0xAA) WKTCL; //唤醒定时器低字节
+__sfr __at ( 0xAB) WKTCH; //唤醒定时器高字节
+__sfr __at ( 0xAC) S3CON;
+__sfr __at ( 0xAD) S3BUF;
+__sfr __at ( 0xAE) TA;
+__sfr __at ( 0xAF) IE2;
 
-__sfr __at  0xB0 P3;
-__sfr __at  0xB1 P3M1; // P3M1.n,P3M0.n 	=00--->Standard,	01--->push-pull
-__sfr __at  0xB2 P3M0; //					=10--->pure input,	11--->open drain
-__sfr __at  0xB3 P4M1; // P4M1.n,P4M0.n 	=00--->Standard,	01--->push-pull
-__sfr __at  0xB4 P4M0; //					=10--->pure input,	11--->open drain
-__sfr __at  0xB5 IP2;
-__sfr __at  0xB6 IP2H;
-__sfr __at  0xB7 IPH;
-
-__sfr __at  0xB8 IP;
-__sfr __at  0xB9 SADEN;
-__sfr __at  0xBA P_SW2;
-__sfr __at  0xBB VOCTRL;
-__sfr __at  0xBC ADC_CONTR; // ADC控制寄存器
-__sfr __at  0xBD ADC_RES;	  // ADC结果高字节
-__sfr __at  0xBE ADC_RESL;  // ADC结果低字节
-__sfr __at  0xC0 P4;
-__sfr __at  0xC1 WDT_CONTR;
-__sfr __at  0xC2 IAP_DATA;
-__sfr __at  0xC3 IAP_ADDRH;
-__sfr __at  0xC4 IAP_ADDRL;
-__sfr __at  0xC5 IAP_CMD;
-__sfr __at  0xC6 IAP_TRIG;
-__sfr __at  0xC7 IAP_CONTR;
-__sfr __at  0xC2 ISP_DATA;
-__sfr __at  0xC3 ISP_ADDRH;
-__sfr __at  0xC4 ISP_ADDRL;
-__sfr __at  0xC5 ISP_CMD;
-__sfr __at  0xC6 ISP_TRIG;
-__sfr __at  0xC7 ISP_CONTR;
-__sfr __at  0xC8 P5;	   //
-__sfr __at  0xC9 P5M1;   //	P5M1.n,P5M0.n 	=00--->Standard,	01--->push-pull
-__sfr __at  0xCA P5M0;   //					=10--->pure input,	11--->open drain
-__sfr __at  0xCB P6M1;   //	P5M1.n,P5M0.n 	=00--->Standard,	01--->push-pull
-__sfr __at  0xCC P6M0;   //					=10--->pure input,	11--->open drain
-__sfr __at  0xCD SPSTAT; //
-__sfr __at  0xCE SPCTL;  //
-__sfr __at  0xCF SPDAT;  //
-__sfr __at  0xD0 PSW;
-__sfr __at  0xD1 T4T3M;
-__sfr __at  0xD2 T4H;
-__sfr __at  0xD3 T4L;
-__sfr __at  0xD4 T3H;
-__sfr __at  0xD5 T3L;
-__sfr __at  0xD6 T2H;
-__sfr __at  0xD7 T2L;
-__sfr __at  0xD2 TH4;
-__sfr __at  0xD3 TL4;
-__sfr __at  0xD4 TH3;
-__sfr __at  0xD5 TL3;
-__sfr __at  0xD6 TH2;
-__sfr __at  0xD7 TL2;
-__sfr __at  0xD8 CCON;   //
-__sfr __at  0xD9 CMOD;   //
-__sfr __at  0xDA CCAPM0; // PCA模块0的工作模式寄存器。
-__sfr __at  0xDB CCAPM1; // PCA模块1的工作模式寄存器。
-__sfr __at  0xDC CCAPM2; // PCA模块2的工作模式寄存器。
-// __sfr _ CCAPM at, 0xDD);	//PCA模块3的工作模式寄存器。
-__sfr __at  0xDC USBCLK;
-__sfr __at  0xDE ADCCFG; //
-__sfr __at  0xDF IP3;	   //中断优先级寄存器
-__sfr __at  0xE0 ACC;
-__sfr __at  0xE1 P7M1;
-__sfr __at  0xE2 P7M0;
-__sfr __at  0xE3 DPS;
-__sfr __at  0xE4 DPL1;
-__sfr __at  0xE5 DPH1;
-__sfr __at  0xE6 CMPCR1;
-__sfr __at  0xE7 CMPCR2;
-__sfr __at  0xE8 P6;
-__sfr __at  0xE9 CL;	   //
-__sfr __at  0xEA CCAP0L; // PCA模块0的捕捉/比较寄存器低8位。
-__sfr __at  0xEB CCAP1L; // PCA模块1的捕捉/比较寄存器低8位。
-__sfr __at  0xEC CCAP2L; // PCA模块2的捕捉/比较寄存器低8位。
-// __sfr _ CCAP3 at, 0xED);	//PCA模块3的捕捉/比较寄存器低8位。
-__sfr __at  0xEC USBDAT;
-__sfr __at  0xEE IP3H;
-__sfr __at  0xEF AUXINTIF; //辅助中断标志 B6-INT4IF, B5-INT3IF, B4-INT2IF, B2-T4IF, B1-T3IF, B0-T2IF
-__sfr __at  0xF0 B;
-__sfr __at  0xF1 PWMSET;	 //增强型PWM全局配置寄存器
-__sfr __at  0xF2 PCA_PWM0; // PCA模块0 PWM寄存器。
-__sfr __at  0xF3 PCA_PWM1; // PCA模块1 PWM寄存器。
-__sfr __at  0xF4 PCA_PWM2; // PCA模块2 PWM寄存器。
-// __sfr _ PCA_P atM3, 0xF5);	//PCA模块3 PWM寄存器。
-__sfr __at  0xF6 PWMCFG01; //增强型PWM配置寄存器
-__sfr __at  0xF7 PWMCFG23; //增强型PWM配置寄存器
-__sfr __at  0xF4 USBCON;
-__sfr __at  0xF5 IAP_TPS;
-__sfr __at  0xF8 P7;
-__sfr __at  0xF9 CH;
-__sfr __at  0xFA CCAP0H; // PCA模块0的捕捉/比较寄存器高8位。
-__sfr __at  0xFB CCAP1H; // PCA模块1的捕捉/比较寄存器高8位。
-__sfr __at  0xFC CCAP2H; // PCA模块2的捕捉/比较寄存器高8位。
-// __sfr _ CCAP3 at, 0xFD);		//PCA模块3的捕捉/比较寄存器高8位。
-__sfr __at  0xFE PWMCFG45; //增强型PWM配置寄存器
-__sfr __at  0xFC USBADR;
-__sfr __at  0xFF RSTCFG; //
+__sfr __at ( 0xB0) P3;
+__sfr __at ( 0xB1) P3M1; // P3M1.n,P3M0.n 	=00--->Standard,	01--->push-pull
+__sfr __at ( 0xB2) P3M0; //					=10--->pure input,	11--->open drain
+__sfr __at ( 0xB3) P4M1; // P4M1.n,P4M0.n 	=00--->Standard,	01--->push-pull
+__sfr __at ( 0xB4) P4M0; //					=10--->pure input,	11--->open drain
+__sfr __at ( 0xB5) IP2;
+__sfr __at ( 0xB6) IP2H;
+__sfr __at ( 0xB7) IPH;
+__sfr __at ( 0xB8) IP;
+__sfr __at ( 0xB9) SADEN;
+__sfr __at ( 0xBA) P_SW2;
+__sfr __at ( 0xBB) VOCTRL;
+__sfr __at ( 0xBC) ADC_CONTR; // ADC控制寄存器
+__sfr __at ( 0xBD) ADC_RES;	  // ADC结果高字节
+__sfr __at ( 0xBE) ADC_RESL;  // ADC结果低字节
+__sfr __at ( 0xC0) P4;
+__sfr __at ( 0xC1) WDT_CONTR;
+__sfr __at ( 0xC2) IAP_DATA;
+__sfr __at ( 0xC3) IAP_ADDRH;
+__sfr __at ( 0xC4) IAP_ADDRL;
+__sfr __at ( 0xC5) IAP_CMD;
+__sfr __at ( 0xC6) IAP_TRIG;
+__sfr __at ( 0xC7) IAP_CONTR;
+__sfr __at ( 0xC2) ISP_DATA;
+__sfr __at ( 0xC3) ISP_ADDRH;
+__sfr __at ( 0xC4) ISP_ADDRL;
+__sfr __at ( 0xC5) ISP_CMD;
+__sfr __at ( 0xC6) ISP_TRIG;
+__sfr __at ( 0xC7) ISP_CONTR;
+__sfr __at ( 0xC8) P5;	   //
+__sfr __at ( 0xC9) P5M1;   //	P5M1.n,P5M0.n 	=00--->Standard,	01--->push-pull
+__sfr __at ( 0xCA) P5M0;   //					=10--->pure input,	11--->open drain
+__sfr __at ( 0xCB) P6M1;   //	P5M1.n,P5M0.n 	=00--->Standard,	01--->push-pull
+__sfr __at ( 0xCC) P6M0;   //					=10--->pure input,	11--->open drain
+__sfr __at ( 0xCD) SPSTAT; //
+__sfr __at ( 0xCE) SPCTL;  //
+__sfr __at ( 0xCF) SPDAT;  //
+__sfr __at ( 0xD0) PSW;
+__sfr __at ( 0xD1) T4T3M;
+__sfr __at ( 0xD2) T4H;
+__sfr __at ( 0xD3) T4L;
+__sfr __at ( 0xD4) T3H;
+__sfr __at ( 0xD5) T3L;
+__sfr __at ( 0xD6) T2H;
+__sfr __at ( 0xD7) T2L;
+__sfr __at ( 0xD2) TH4;
+__sfr __at ( 0xD3) TL4;
+__sfr __at ( 0xD4) TH3;
+__sfr __at ( 0xD5) TL3;
+__sfr __at ( 0xD6) TH2;
+__sfr __at ( 0xD7) TL2;
+__sfr __at ( 0xD8) CCON;   //
+__sfr __at ( 0xD9) CMOD;   //
+__sfr __at ( 0xDA) CCAPM0; // PCA模块0的工作模式寄存器。
+__sfr __at ( 0xDB) CCAPM1; // PCA模块1的工作模式寄存器。
+__sfr __at ( 0xDC) CCAPM2; // PCA模块2的工作模式寄存器。
+// __sfr _ (CCAPM) at, 0xDD);	//PCA模块3的工作模式寄存器。
+__sfr __at ( 0xDC) USBCLK;
+__sfr __at ( 0xDE) ADCCFG; //
+__sfr __at ( 0xDF) IP3;	   //中断优先级寄存器
+__sfr __at ( 0xE0) ACC;
+__sfr __at ( 0xE1) P7M1;
+__sfr __at ( 0xE2) P7M0;
+__sfr __at ( 0xE3) DPS;
+__sfr __at ( 0xE4) DPL1;
+__sfr __at ( 0xE5) DPH1;
+__sfr __at ( 0xE6) CMPCR1;
+__sfr __at ( 0xE7) CMPCR2;
+__sfr __at ( 0xE8) P6;
+__sfr __at ( 0xE9) CL;	   //
+__sfr __at ( 0xEA) CCAP0L; // PCA模块0的捕捉/比较寄存器低8位。
+__sfr __at ( 0xEB) CCAP1L; // PCA模块1的捕捉/比较寄存器低8位。
+__sfr __at ( 0xEC) CCAP2L; // PCA模块2的捕捉/比较寄存器低8位。
+// __sfr _ (CCAP3) at, 0xED);	//PCA模块3的捕捉/比较寄存器低8位。
+__sfr __at ( 0xEC) USBDAT;
+__sfr __at ( 0xEE) IP3H;
+__sfr __at ( 0xEF) AUXINTIF; //辅助中断标志 B6-INT4IF, B5-INT3IF, B4-INT2IF, B2-T4IF, B1-T3IF, B0-T2IF
+__sfr __at ( 0xF0) B;
+__sfr __at ( 0xF1) PWMSET;	 //增强型PWM全局配置寄存器
+__sfr __at ( 0xF2) PCA_PWM0; // PCA模块0 PWM寄存器。
+__sfr __at ( 0xF3) PCA_PWM1; // PCA模块1 PWM寄存器。
+__sfr __at ( 0xF4) PCA_PWM2; // PCA模块2 PWM寄存器。
+// __sfr _ (PCA_P) atM3, 0xF5);	//PCA模块3 PWM寄存器。
+__sfr __at ( 0xF6) PWMCFG01; //增强型PWM配置寄存器
+__sfr __at ( 0xF7) PWMCFG23; //增强型PWM配置寄存器
+__sfr __at ( 0xF4) USBCON;
+__sfr __at ( 0xF5) IAP_TPS;
+__sfr __at ( 0xF8) P7;
+__sfr __at ( 0xF9) CH;
+__sfr __at ( 0xFA) CCAP0H; // PCA模块0的捕捉/比较寄存器高8位。
+__sfr __at ( 0xFB) CCAP1H; // PCA模块1的捕捉/比较寄存器高8位。
+__sfr __at ( 0xFC) CCAP2H; // PCA模块2的捕捉/比较寄存器高8位。
+// __sfr _ (CCAP3) at, 0xFD);		//PCA模块3的捕捉/比较寄存器高8位。
+__sfr __at ( 0xFE) PWMCFG45; //增强型PWM配置寄存器
+__sfr __at ( 0xFC) USBADR;
+__sfr __at ( 0xFF) RSTCFG; //
 
 //                                     7    6    5    4    3     2       1       0      Reset Value
 // INT_CLKO:  中断与时钟输出控制寄存器  -   EX4  EX3  EX2   -   T2CLKO  T1CLKO  T0CLKO    0000,0000

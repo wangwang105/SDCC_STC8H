@@ -11,9 +11,13 @@
         {
           "name": "default",
           "incList": [
-            "./build/Debug/src"
+            "./build/Debug/src",
+            "./src/UART"
           ],
-          "libList": [],
+          "libList": [
+            "./src",
+            "./src/UART"
+          ],
           "sourceDirList": [],
           "defineList": []
         }

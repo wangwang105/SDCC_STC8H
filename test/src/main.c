@@ -2,23 +2,26 @@
 
 void Delaynms(u32 ms);
 void Delay1ms(); //软件延时
-void ClockConfig();
+void ClockConfig(void);
+void UART1Config(void);
+int putchar(int c);
 
 void main(void)
 {
-    //	float temp[10] = 0.0f;
-    //	u8 i;
-    P0M1 =0;
-    P0M0 =0;
+    // P0M1 = 0;
+    // P0M0 = 0;
     ClockConfig();
-    // UART1Config();
+    UART1Config();
+
     EA = 1; //打开总中断
+
     while (1)
     {
-        P02 = 1;
-        Delaynms(1);
-        P02 = 0;
-        Delaynms(1);
+        // P02 = 1;
+        Delaynms(100);
+        // P02 = 0;
+        Delaynms(100);
+        printf_small("hello world\r\n");
         /* code */
     }
 }
@@ -53,6 +56,28 @@ void ClockConfig(void)
 
 /**
  * @Author: 王荣文
+ * @description: 串口1设置（使用定时器2）// use timer 2
+ * @return {*}
+ */
+void UART1Config(void) // 24MHz 9600 Baud rate
+{
+    // UART1_Priority(3);
+    SCON = 0x50;  // 8位数据,可变波特率
+    AUXR |= 0x01; //串口1选择定时器2为波特率发生器
+    AUXR |= 0x04; //定时器时钟1T模式
+    T2L = 0x8F;   //设置定时初始值
+    T2H = 0xFD;   //设置定时初始值
+    AUXR |= 0x10; //定时器2开始计时
+
+    // TI = 1; //使用printf函数时，在初始化里TI置1.
+
+    ES = 1; //使能串口中断
+    EA = 1;
+    return;
+}
+
+/**
+ * @Author: 王荣文
  * @description: nms的软件延时
  * @param {u32} ms
  * @return {*}
@@ -82,4 +107,15 @@ void Delay1ms() //@24.000MHz
         while (--j)
             ;
     } while (--i);
+}
+/**
+ * @Author: 王荣文
+ * @description: printf重定向
+ * @param {char} c
+ * @return {*}
+ */
+int putchar(int c)
+{
+    TX1_write2buff(c);
+    return c;
 }
