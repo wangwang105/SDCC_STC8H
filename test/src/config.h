@@ -34,7 +34,7 @@
 // #include "MAX31855.h"
 // #include "CANSPI.h"
 // #include "MCP2515.h"
-#include <stdio.h>
+#include "stdio.h"
 // #include <math.h>
 // #include <string.h>
 //////////////////GPIO重命名//////////////////////////

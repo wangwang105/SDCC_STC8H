@@ -8,8 +8,19 @@ int putchar(int c);
 
 void main(void)
 {
-    // P0M1 = 0;
-    // P0M0 = 0;
+    P0M1 = 0;
+    P0M0 = 0;
+    P1M1 = 0;
+    P1M0 = 0;
+    P2M1 = 0;
+    P2M0 = 0;
+    P3M1 = 0;
+    P3M0 = 0;
+    P4M1 = 0;
+    P4M0 = 0;
+    P5M1 = 0;
+    P5M0 = 0;
+
     ClockConfig();
     UART1Config();
 
@@ -17,9 +28,9 @@ void main(void)
 
     while (1)
     {
-        // P02 = 1;
+        P02 = 1;
         Delaynms(100);
-        // P02 = 0;
+        P02 = 0;
         Delaynms(100);
         printf_small("hello world\r\n");
         /* code */
@@ -69,7 +80,7 @@ void UART1Config(void) // 24MHz 9600 Baud rate
     T2H = 0xFD;   //设置定时初始值
     AUXR |= 0x10; //定时器2开始计时
 
-    // TI = 1; //使用printf函数时，在初始化里TI置1.
+    TI = 1; //使用printf函数时，在初始化里TI置1.
 
     ES = 1; //使能串口中断
     EA = 1;
@@ -116,6 +127,6 @@ void Delay1ms() //@24.000MHz
  */
 int putchar(int c)
 {
-    TX1_write2buff(c);
+    TX1_write2buff((u8)c);
     return c;
 }
