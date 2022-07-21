@@ -65,7 +65,7 @@ extern COMx_Define COM1;
 extern u8 __xdata TX1_Buffer[COM_TX1_Lenth]; //发送缓冲
 extern u8 __xdata RX1_Buffer[COM_RX1_Lenth]; //接收缓冲
 
-// In sdcc，interrupt function is needed a declaration 
+// In sdcc，interrupt function is needed a declaration
 void UART1_int(void) __interrupt(UART1_VECTOR);
 void TX1_write2buff(u8 dat); //写入发送缓冲，指针+1
 void PrintString1(u8 *puts);

@@ -1,7 +1,5 @@
 #include "config.h"
 
-
-
 void Delaynms(u32 ms);
 void Delay1ms(); //软件延时
 void ClockConfig(void);
@@ -139,10 +137,10 @@ int putchar(int c)
     return c;
 
     //可以输出
-    // ES=0;        
-    // SBUF = c;        
-    // while(TI==0);        
-    // TI=0;        
-    // ES=1;        
+    // ES=0;
+    // SBUF = c;
+    // while(TI==0);
+    // TI=0;
+    // ES=1;
     // return 0;
 }
