@@ -1,7 +1,3 @@
-// // 转换后的代码如下
-//
-////////////////////////////////////////////////////////////////
-#include <compiler.h>    // 请在本网页下载此头文件(https://csy-tvgo.github.io/Keil-C51-C-to-SDCC-C-Converter/)
 /*---------------------------------------------------------------------*/
 /* --- STC MCU Limited ------------------------------------------------*/
 /* --- STC 1T Series MCU Demo Programme -------------------------------*/
@@ -75,3 +71,27 @@ void UART1_int(void) __interrupt(UART1_VECTOR)
 }
 #endif
 
+/**
+ * @Author: 王荣文
+ * @description: printf重定向
+ * @param {char} c
+ * @return {*}
+ */
+// int putchar(int c)
+// {
+//     TX1_write2buff((i8)c);
+//     return c;
+// }
+int putchar(int c)
+{
+    TX1_write2buff(c);
+    return c;
+
+    //可以输出
+    // ES=0;
+    // SBUF = c;
+    // while(TI==0);
+    // TI=0;
+    // ES=1;
+    // return 0;
+}

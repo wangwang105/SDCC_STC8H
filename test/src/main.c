@@ -1,10 +1,9 @@
 #include "config.h"
 
-void Delaynms(u32 ms);
-void Delay1ms(); //软件延时
+
 void ClockConfig(void);
 void UART1Config(void);
-int putchar(int c);
+
 
 void main(void)
 {
@@ -119,28 +118,4 @@ void Delay1ms() //@24.000MHz
         while (--j)
             ;
     } while (--i);
-}
-/**
- * @Author: 王荣文
- * @description: printf重定向
- * @param {char} c
- * @return {*}
- */
-// int putchar(int c)
-// {
-//     TX1_write2buff((i8)c);
-//     return c;
-// }
-int putchar(int c)
-{
-    TX1_write2buff(c);
-    return c;
-
-    //可以输出
-    // ES=0;
-    // SBUF = c;
-    // while(TI==0);
-    // TI=0;
-    // ES=1;
-    // return 0;
 }
