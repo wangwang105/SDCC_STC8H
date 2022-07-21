@@ -1,3 +1,7 @@
+// // 转换后的代码如下
+//
+////////////////////////////////////////////////////////////////
+#include <compiler.h>    // 请在本网页下载此头文件(https://csy-tvgo.github.io/Keil-C51-C-to-SDCC-C-Converter/)
 /*---------------------------------------------------------------------*/
 /* --- STC MCU Limited ------------------------------------------------*/
 /* --- STC 1T Series MCU Demo Programme -------------------------------*/
@@ -19,8 +23,6 @@ u8 __xdata RX1_Buffer[COM_RX1_Lenth]; //接收缓冲
 #endif
 
 /*********************************************************/
-
-
 
 /********************* UART1 函数 ************************/
 #ifdef UART1
@@ -63,6 +65,7 @@ void UART1_int(void) __interrupt(UART1_VECTOR)
 		if (COM1.TX_read != COM1.TX_write)
 		{
 			SBUF = TX1_Buffer[COM1.TX_read];
+			
 			if (++COM1.TX_read >= COM_TX1_Lenth)
 				COM1.TX_read = 0;
 		}
@@ -71,3 +74,4 @@ void UART1_int(void) __interrupt(UART1_VECTOR)
 	}
 }
 #endif
+

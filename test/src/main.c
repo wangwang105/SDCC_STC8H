@@ -1,5 +1,7 @@
 #include "config.h"
 
+
+
 void Delaynms(u32 ms);
 void Delay1ms(); //软件延时
 void ClockConfig(void);
@@ -8,18 +10,19 @@ int putchar(int c);
 
 void main(void)
 {
-    P0M1 = 0;
-    P0M0 = 0;
-    P1M1 = 0;
-    P1M0 = 0;
-    P2M1 = 0;
-    P2M0 = 0;
-    P3M1 = 0;
-    P3M0 = 0;
-    P4M1 = 0;
-    P4M0 = 0;
-    P5M1 = 0;
-    P5M0 = 0;
+    // P0M1 = 0;
+    // P0M0 = 0;
+    // P1M1 = 0;
+    // P1M0 = 0;
+    // P2M1 = 0;
+    // P2M0 = 0;
+    // P3M1 = 0;
+    // P3M0 = 0;
+    // P4M1 = 0;
+    // P4M0 = 0;
+    // P5M1 = 0;
+    // P5M0 = 0;
+    P0n_push_pull(Pin2);
 
     ClockConfig();
     UART1Config();
@@ -80,7 +83,7 @@ void UART1Config(void) // 24MHz 9600 Baud rate
     T2H = 0xFD;   //设置定时初始值
     AUXR |= 0x10; //定时器2开始计时
 
-    TI = 1; //使用printf函数时，在初始化里TI置1.
+    // TI = 1; //使用printf函数时，在初始化里TI置1.
 
     ES = 1; //使能串口中断
     EA = 1;
@@ -110,7 +113,7 @@ void Delay1ms() //@24.000MHz
 {
     unsigned char i, j;
 
-    _nop_();
+    NOP1();
     i = 32;
     j = 40;
     do
@@ -125,8 +128,21 @@ void Delay1ms() //@24.000MHz
  * @param {char} c
  * @return {*}
  */
+// int putchar(int c)
+// {
+//     TX1_write2buff((i8)c);
+//     return c;
+// }
 int putchar(int c)
 {
-    TX1_write2buff((u8)c);
+    TX1_write2buff(c);
     return c;
+
+    //可以输出
+    // ES=0;        
+    // SBUF = c;        
+    // while(TI==0);        
+    // TI=0;        
+    // ES=1;        
+    // return 0;
 }
